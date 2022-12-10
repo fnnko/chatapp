@@ -1,0 +1,28 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'main/css/settings.css' %}">
+{% endblock %}
+
+{% block header_title %}ユーザー名変更{% endblock %}
+
+{% block content %}
+<form action="{% url 'email_change' %}" method="POST" class="settings">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit">変更</button>
+</form>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'username_change' %}" method="POST" class="settings">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit">変更</button>
+</form>
+{% endblock %}

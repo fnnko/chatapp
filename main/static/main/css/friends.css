@@ -1,0 +1,53 @@
+/* body{
+    background-color: #FFCCC8;
+    /* width: 600px;
+    margin: 0 auto; */
+
+.friends {
+    padding: 64px 0;
+}
+
+.friends-list {
+    margin: 0 auto;
+    /* width: 600px; */
+    padding: 0;
+    list-style: none;
+    width:600px;
+}
+
+.friends-list__item {
+    border-bottom: 1px solid #888;
+    border-left: 1px solid #888;
+    border-right: 1px solid #888;
+}
+
+/* 下にしか枠線を引いていないので、初めの要素にだけ上にも枠線を引くように設定 */
+.friends-list__item:first-child {
+    border-top: 1px solid #888;
+}
+
+.friends-list__link {
+    display: block;
+    padding: 8px 16px;
+    height: 64px;
+    background-color: #FFCCC8;
+}
+
+.friends-list__username {
+    font-size: 1.2rem;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.friends-list__link:hover{
+    background-color: #fca7a1e9;
+}
+
+img {
+    width: 50px;
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 6px;
+}
