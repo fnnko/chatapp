@@ -36,10 +36,12 @@ a {
     height: 64px;
     border-top: 1px solid #9b9b9b;
     background-color: #eee;
+    border: 1px solid #9b9b9b;
 }
 
 .footer__item {
     width: 50%;
+    /* border: solid 2px black; */
 }
 
 .footer__link {
