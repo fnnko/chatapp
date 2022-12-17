@@ -16,38 +16,54 @@
 <div class="talk-room">
     {# 過去のチャットの表示部分 #}
 
-    <div class ="chatboard" id="chatboard" >
-        <ul class="chatboard">
+    <div id="message-area">
+    
+        <ul class="chatboard" id="chatboard">
             {# チャットを古い順に for 文で表示します #}
+            {% for talk in talks %}
 
-        {% for talk in talks %}
-            
-                <!-- {% if talk.sender.username == request.user.id %} -->
+                <!-- 送信者が誰かによって分岐 -->
+                <!-- 分岐することで、classが変わっている -->
+
+                <!-- viewsから渡しているのはfriend（＝相手の情報）だったので、先に相手を分岐 -->
+                <!-- もし相手からのメッセージなら -->
                 {% if talk.sender == friend %}
-                    <li class="chatboard__item chatboard__username">
+                    <li class="chatboard__item chatboard__item--friend">
 
-                        <p class =" message_content-name">-{{ talk.sender.username }}</p>
-                        <p class ="message_content-text">{{ talk.message }}</p>
-                        <p class="chatboard__time">
-                            {{ talk.time|date:"m/d" }}<br>
-                            {{ talk.time|date:"H:i" }}</p>
-                    
+                        <!-- 左右に分けるため、ユーザー名表示が不要なので削除 -->
+
+                        <!-- <p class="chatboard__username chatboard__username--friend">
+                            ＞{{ talk.sender.username }}
+                        </p> -->
+                        <p class="chatboard__message chatboard__message--friend">{{ talk.message }}</p>
+                        <p class="chatboard__time chatboard__time--friend">
+                            {{ talk.time|date:"m/d" }}</br>
+                            {{ talk.time|date:"H:i" }}
+                        </p>
                     </li>
-                {% else %}
-                    <li class="chatboard__item chatboard__friend">
-                        
-                        <p class="message_content-name">-{{ talk.sender.username }} </p>
-                        <p class="message_content-text">{{ talk.message }}</p>
 
-                        <p class="chatboard__time">
-                            {{ talk.time|date:"m/d" }}<br>
-                            {{ talk.time|date:"H:i" }}</p>
-                    
+                <!-- もし自分の送ったメッセージなら -->
+                {% else %}
+                    <li class="chatboard__item chatboard__item--me">
+
+                        <!-- 左右に分けるため、ユーザー名表示が不要なので削除 -->
+
+                        <!-- <p class="chatboard__username chatboard__username--me">
+                            ＞{{ talk.sender.username }}
+                        </p> -->
+                        <p class="chatboard__message chatboard__message--me">{{ talk.message }}</p>
+                        <p class="chatboard__time chatboard__time--me">
+                            {{ talk.time|date:"m/d" }}</br>
+                            {{ talk.time|date:"H:i" }}
+                        </p>
                     </li>
                 {% endif %}
+            
             {% endfor %}
         </ul>
+
     </div>
+
 
     {# チャットの送信フォーム #}
     <form action="{% url 'talk_room' friend.id %}" method="POST" class="message-form">
@@ -59,3 +75,12 @@
 {% endblock %}
 
 {% block footer %}{% endblock %}
+
+<!-- 読み込み時に最下行までスクロールさせるために追加 -->
+{% block extra_js %}
+<script>
+    let target = document.getElementById('chatboard');
+    target.scrollIntoView(false);
+</script>
+
+{% endblock %}

@@ -15,7 +15,7 @@
         <li class="friends-list__item">
             <a href="{% url 'talk_room' friend.id %}" class="friends-list__link">
                 <img src="https://4thsight.xyz/wp-content/uploads/2020/02/1582801063-300x300.png">
-                <!-- <div class="friends-list__username">{{ friend.username }}</div> -->
+                <div class="friends-list__username">{{ friend.username }}</div>
             </a>
         </li>
         {% endfor %}

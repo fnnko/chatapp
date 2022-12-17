@@ -11,14 +11,14 @@
     list-style: none;
 }
 
-.chatboard__item {
+/* .chatboard__item {
     padding: 2px 8px 2px;
     border-bottom: 2px solid #eee;
     background-color: #82796C;
     /* width: auto; */
     /* background-color: #7DA68A; */
     color: white;
-}
+} */
 
 .chatboard__item:first-child {
     border-top: 2px solid #eee;
@@ -130,4 +130,219 @@
 .message-form__submit:hover{
     background-color: goldenrod;
     color: white;
+}
+
+/* ここから下がコピペのコード */
+
+.talk-room {
+    padding: 64px 0 72px;
+}
+
+/* トークの表示部分 */
+.chatboard {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.chatboard__item {
+    padding: 8px;
+    /* border-bottom: 2px solid #eee;
+    &➞チャットの下に線がはいる */
+
+}
+
+.chatboard__item:first-child {
+    /* border-top: 2px solid #eee; 
+&➞:first-childを入れることでそのコードの初めの部分のみにcssを効かすことができる*/
+}
+
+.chatboard__username {
+    margin: 0 0 4px;
+    font-size: 0.8rem;
+   /* ？＆＆＆＆＆ 削除しているから多分いらないはず */
+}
+
+.chatboard__message {
+    margin: 0;
+    word-break: break-all;
+    /* &このコードがメッセージの改行をしている */
+}
+
+/* 編集：時間表示の設定を下で書くために全部無効化 */
+
+/* .chatboard__time {
+    position: absolute;
+    right: 16px;
+    font-size: 0.6rem;
+    height: max-content;
+} */
+
+/* トーク送信部分 */
+.message-form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 48px;
+    background-color: #eee;
+    text-align: center;
+}
+/* ？？どこのcss？消しても実行内容変わらない… 
+message-fromのclass自体何を表わしているか、*/
+
+.message-form * {
+    box-sizing: border-box;
+}
+
+.message-form input {
+    width: calc(100% - 5em);
+    /*clac()カッコ内で異なった単位同士計算できる */
+    margin: 10px 0;
+    padding: 0 12px;
+    border: 2px solid #131313;
+    border-radius: 14px;
+    font-size: 1rem;
+    line-height: 24px;
+}
+
+.message-form__submit {
+    width: 4em;
+    margin: 10px 0;
+    padding: 0;
+    border: 2px solid #131313;
+    border-radius: 16px;
+    font-size: 1rem;
+    background-color: transparent;
+}
+
+/* talk_room 固有の header の要素 */
+.back-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 16px;
+    height: 2rem;
+    margin: auto;
+    font-size: 2rem;
+    color: #888;
+}
+
+.reload-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 16px;
+    height: 1rem;
+    margin: auto;
+    padding: 4px 0.5em;
+    border: 2px solid #888;
+    border-radius: 1em;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #888;
+}
+
+/* 編集： */
+/* ☆☆☆☆☆☆　LINEっぽく変更　☆☆☆☆☆☆ */
+
+/* ＝＝＝＝＝　レイアウト　＝＝＝＝＝ */
+/* メッセージと時間表示を横並びに */
+
+/* flexboxについて */
+/* このページのコードをまんまコピーして使用してます */
+/* https://mamewaza.com/support/blog/howto-use-flex.html */
+
+.chatboard__item--me{
+    /* flexを使用 */
+    display: -webkit-flex;
+    display: flex;
+
+    /* 左揃え */
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    
+    /* 逆順に並べる */
+    /* →左右が反転する */
+    /* →右揃えになる */
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+
+    /* 下揃え */
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+.chatboard__item--friend{
+    /* flexを使用 */
+    display: -webkit-flex;
+    display: flex;
+
+    /* そのままで勝手に左揃えになる */
+
+    /* 下揃え */
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+
+/* ＝＝＝＝＝　メッセージを囲う　＝＝＝＝＝ */
+
+.chatboard__message{
+    /* pタグが利用されていて、サイズの扱いなどが面倒なので、変更 */
+    display: block;
+    padding: 12px 16px;
+    border-radius: 18px;
+
+    /* 横いっぱいに広がるのではなく、中身の文章分の横幅になる */
+    /* 無くしたりつけたりして、どういう意味かを見てみよう */
+    width: max-content;
+
+    /* でも、画面サイズの80%よりは大きくならないように */
+    max-width: 60vw;
+
+    /* 高さも、文章分の高さに収まるように */
+    /* 無くしたりつけたりして、どういう意味かを見てみよう */
+    height: max-content;
+}
+
+/* 自分から送ったものは緑 */
+.chatboard__message--me{
+    background-color: rgb(97, 226, 123);
+}
+
+/* 相手から来たものは灰色 */
+.chatboard__message--friend{
+    background-color: #eee;
+}
+
+
+/* ＝＝＝＝＝　時間表示　＝＝＝＝＝ */
+
+.chatboard__time{
+    /* pタグが利用されていて、サイズの扱いなどが面倒なので、変更 */
+    display: block;
+    position: relative;
+    font-size: 0.6rem;
+
+    /* 縦に変に伸びないように、高さも、文章分の高さに収まるように */
+    height: max-content;
+}
+
+/* 自分から送ったものと相手からのものとで左右が逆なので、左右が逆になる余白を入れる */
+.chatboard__time--me{
+    margin: 0 12px 4px 0;
+}
+
+.chatboard__time--friend{
+    margin: 0 0 4px 12px;
+}
+
+
+/* 読み込み時に最下行までスクロールさせるために追加 */
+
+#message-area{
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 112px);
+    overflow-y: scroll;
 }

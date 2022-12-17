@@ -18,6 +18,7 @@ a {
     height: 64px;
     border-bottom: 1px solid #9b9b9b;
     background-color: #eee;
+    z-index: 1000;
 }
 
 .header__title {
@@ -57,4 +58,12 @@ a {
 
 .footer__label {
     line-height: 24px;
+}
+
+.footer_item1{
+    border-right: solid #000 1px;
+}
+
+.footer__link:hover{
+    background-color: #9b9b9b;
 }

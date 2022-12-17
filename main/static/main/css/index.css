@@ -1,15 +1,26 @@
 body{
     background-color: beige;
+        margin: 0 auto;
+        width: 100vh;
+        height: 100vh;
+        position: relative;
 }
 .buttons {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
+    /* position: absolute;　いる？ */
+    /* top: 0;
+    bottom: 0; */
+    width: 80%;
+    padding-bottom: 20px;
     height: max-content;
-    margin: auto;
     text-align: center;
     background-color: white;
+  outline: dashed 1px black;
+  margin:auto;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 }
 
 .button {
@@ -29,6 +40,7 @@ a{
 
 h1{
     text-align: center;
+    
 }
 
 .button:hover{
