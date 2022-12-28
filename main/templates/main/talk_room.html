@@ -13,12 +13,18 @@
 {% endblock %}
 
 {% block content %}
+
+
 <div class="talk-room">
+
+    <img class = "talk_room__background" src ="{% static 'main/images/background1.png' %}">
     {# 過去のチャットの表示部分 #}
 
+    
     <div id="message-area">
     
         <ul class="chatboard" id="chatboard">
+            
             {# チャットを古い順に for 文で表示します #}
             {% for talk in talks %}
 
@@ -37,14 +43,18 @@
                         </p> -->
                         <p class="chatboard__message chatboard__message--friend">{{ talk.message }}</p>
                         <p class="chatboard__time chatboard__time--friend">
-                            {{ talk.time|date:"m/d" }}</br>
-                            {{ talk.time|date:"H:i" }}
+                            <!-- {{ talk.time|date:"m/d" }}</br> -->
+                            <!-- {{ talk.time|date:"H:i" }}</br> -->
+                            {{ talk.get_elapsed_time }}
                         </p>
+                    
                     </li>
 
                 <!-- もし自分の送ったメッセージなら -->
                 {% else %}
                     <li class="chatboard__item chatboard__item--me">
+
+                      
 
                         <!-- 左右に分けるため、ユーザー名表示が不要なので削除 -->
 
@@ -52,10 +62,14 @@
                             ＞{{ talk.sender.username }}
                         </p> -->
                         <p class="chatboard__message chatboard__message--me">{{ talk.message }}</p>
-                        <p class="chatboard__time chatboard__time--me">
+                        <!-- <p class="chatboard__time chatboard__time--me">
                             {{ talk.time|date:"m/d" }}</br>
                             {{ talk.time|date:"H:i" }}
+                        </p> -->
+                        <p class="chatboard__time chatboard__time--me">
+                            {{ talk.get_elapsed_time }}
                         </p>
+                    
                     </li>
                 {% endif %}
             
@@ -64,6 +78,15 @@
 
     </div>
 
+
+    {# エラーを追加 #}
+    {% if form.message.errors %}
+    <ul>
+        {% for error in form.message.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
     {# チャットの送信フォーム #}
     <form action="{% url 'talk_room' friend.id %}" method="POST" class="message-form">

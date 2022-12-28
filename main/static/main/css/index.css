@@ -1,7 +1,7 @@
 body{
-    background-color: beige;
+    background: linear-gradient(-135deg, #E4A972, #9941D8);
         margin: 0 auto;
-        width: 100vh;
+        width: 100vw;
         height: 100vh;
         position: relative;
 }
@@ -14,13 +14,14 @@ body{
     height: max-content;
     text-align: center;
     background-color: white;
-  outline: dashed 1px black;
+    border-radius: 30px;
   margin:auto;
   position: absolute;
   top:0;
   bottom:0;
   left:0;
   right:0;
+  box-shadow: 4px 4px;
 }
 
 .button {
@@ -30,13 +31,10 @@ body{
     padding: 8px 0;
     border: 1px solid ;
     border-radius: 10px;
-    color:rgb(159, 66, 66);
-    background-color: rgb(213, 213, 165);
+    color:rgb(232, 222, 222);
+    background-color:rgb(87, 145, 161);
 }
 
-a{
-    background-color: rgb(213, 213, 165);
-}
 
 h1{
     text-align: center;
@@ -44,5 +42,49 @@ h1{
 }
 
 .button:hover{
-    background-color: rgb(104, 104, 63);
+    background-color: rgb(56, 91, 101);
+}
+
+img{
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    /* padding-bottom: 50%; */
+    position: absolute;
+    top:-30px;
+    /* bottom:0; */
+    left:0;
+    right:0;
+    margin:auto;
+    animation: fluffy1 2s ease infinite; 
+    object-fit: contain;
+}
+
+@keyframes fluffy1 {
+    0% {
+      transform: translateY(0); }
+    5% {
+      transform: translateY(0); }
+    10% {
+      transform: translateY(0); }
+    20% {
+      transform: translateY(-10px); }
+    25% {
+      transform: translateY(0); }
+    30% {
+      transform: translateY(-10px); }
+    50% {
+      transform: translateY(0); }
+    100% {
+      transform: translateY(0); } }
+
+.pc { display:block; }
+.sp { display:none; }
+
+@media only screen and (max-width : 767px){
+  .pc { display:none; }
+  .sp { display:block; }
+  img{
+    width: 90%;
+  }
 }

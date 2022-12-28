@@ -5,14 +5,27 @@
 <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
 {% endblock %}
 
-{% block header %}{% endblock %}{# index ページはヘッダー不要なので何も書かない #}
+{% block header %}<meta name="viewport" content="width=device-width, initial-scale=1.0">{% endblock %}{# index ページはヘッダー不要なので何も書かない #}
 
 {% block content %}{# index ページの中身を記述 #}
-<div class="buttons">     
-    <h1>チャットアプリ</h1>
-        <a href="{% url 'login' %}" class="button">ログイン</a>
-        <a href="{% url 'signup' %}" class="button">会員登録</a>
+<div class="pc">
+    <img src="{% static 'main/images/vVhEt6LiT5UBrUb1672074832_1672074843.png' %}">
+    <div class="buttons">   
+        <h1>Chat app</h1>
+        <a href="{% url 'login' %}" class="button">login</a>
+        <a href="{% url 'signup' %}" class="button">sign up</a>
+    </div>
 </div>
+
+<div class="sp">
+    <img src="{% static 'main/images/vVhEt6LiT5UBrUb1672074832_1672074843.png' %}">
+    <div class="buttons">   
+        <h1>Chat app</h1>
+        <a href="{% url 'login' %}" class="button">login</a>
+        <a href="{% url 'signup' %}" class="button">sign up</a>
+    </div>
+</div>
+
 
 {% endblock %}
 

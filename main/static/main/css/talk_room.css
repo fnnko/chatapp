@@ -166,7 +166,9 @@
 .chatboard__message {
     margin: 0;
     word-break: break-all;
-    /* &このコードがメッセージの改行をしている */
+    color:white;
+    font-family: monospace
+      /* &このコードがメッセージの改行をしている */
 }
 
 /* 編集：時間表示の設定を下で書くために全部無効化 */
@@ -307,12 +309,13 @@ message-fromのclass自体何を表わしているか、*/
 
 /* 自分から送ったものは緑 */
 .chatboard__message--me{
-    background-color: rgb(97, 226, 123);
+    background-color: #5E5470;
 }
 
 /* 相手から来たものは灰色 */
 .chatboard__message--friend{
-    background-color: #eee;
+    /* background-color: #eee; */
+    background-color: #786d8e;
 }
 
 
@@ -345,4 +348,16 @@ message-fromのclass自体何を表わしているか、*/
     width: 100%;
     height: calc(100% - 112px);
     overflow-y: scroll;
+}
+
+.talk_room__background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
 }

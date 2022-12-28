@@ -11,6 +11,7 @@ from django.db.models import Q  # 追加
 from django.shortcuts import get_object_or_404, redirect, render  # get_object_or_404 を追加
 
 from .models import Talk, User  # Talk を追加
+# from .forms import clean_message
 
 from .forms import (
     SignUpForm,
@@ -20,6 +21,10 @@ from .forms import (
     EmailChangeForm,  # 追加
 )
 from django.urls import reverse_lazy  
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -42,6 +47,9 @@ def signup(request):
             # フォームから username と password を読み取る
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password1"]
+            email = form.cleaned_data["email"]
+            # email = form.cleaned_date{"email"}
+            
 
             # 認証情報のセットを検証するには authenticate() を利用します。
             # このメソッドは認証情報をキーワード引数として受け取ります。
@@ -60,7 +68,7 @@ def signup(request):
                 # ここでの User は認証バックエンド属性を持ってる必要があり、
                 # authenticate() が返す User は user.backend（認証バックエンド属性）を持つので連携可能。
                 auth.login(request, user)
-
+            logger.info("username:%s, email:%s, has been", username, email,)  # 追加
             return redirect("index")
     
     
@@ -113,6 +121,9 @@ def talk_room(request,user_id):
             new_talk.sender = request.user
             new_talk.receiver = friend
             new_talk.save()
+
+            logger.info("A message has been sent: %s to %s", request.user.username, friend.username)  # 追加
+            # logger.info("%sという禁止語が入力されました。", clean_message)
             return redirect("talk_room", user_id)
 
     context = {
